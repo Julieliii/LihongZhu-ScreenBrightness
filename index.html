@@ -1,0 +1,82 @@
+<div class="button">
+  <div class="bottom">
+   <img src="https://s1.ax1x.com/2022/03/07/bsbl60.png" id="icon">
+    <img src="https://s1.ax1x.com/2022/03/08/b6vu9S.png" id="night">
+  </div> 
+</div>
+<style>
+   * {
+    margin: 0px;
+    padding: 0px;
+        }
+body {
+  background-color: rgb(255, 255, 255);
+     }
+.button {
+  position: fixed;
+  Top: 20%;
+  Left: 50%;
+  position:fixed;
+  background-color: white;
+  transform: translate(-50%, -50%);  
+  margin:2px solid red;
+        }
+.bottom {
+  position: absolute;
+  width:80px;
+  height: 80px;
+  top: auto;
+	left: auto;
+  position: fixed;
+	transform:translate(-50%,-50%);
+  border-radius: 50%;
+   mix-blend-mode:luminosity;
+  backdrop-filter:blur(5px);
+/*   opacity:1.0; */
+/*   background:#F5844B;  */
+/* background:url(https://seikim.com/i/2022/02/28/pru08n.png);  */
+        }
+#icon{
+  opacity:1.0;
+}
+
+#night{
+  opacity:0.0;
+  position:absolute;
+  top:0;
+  left:0;
+}
+</style>
+<script>
+  var bottom = document.querySelector('.bottom');
+ var button = document.querySelector('.button');
+ var body = document.body;
+ var flag;
+ bottom.onmousedown = function(e) 
+ {
+   bottom.style.cursor = 'move';
+   flag = true;
+   var disy = e.pageY - bottom.offsetTop;
+   document.onmousemove = function(e) 
+   {
+     var y = e.pageY - disy;
+     if (flag == true) {
+       if (y < 0) { y = 0 };
+       if (y > 300) { y = 300};
+       bottom.style.top = y + 'px';
+       r = 255 - y;
+       g = 255 - y;
+       b = 255 - y;
+       a = 1/((y/60)+1);
+       n = ((y/60)+1)/6;
+       backgroundColor = 'rgb'+'('+r+','+g+','+b+')';
+       // bottomColor='rgb'+'('+r+','+g+','+b+')';
+       body.style.backgroundColor = backgroundColor;
+       document.getElementById("icon").style.opacity = a;
+       document.getElementById(
+"night").style.opacity
+= n;
+                }
+            }
+        };
+</script>
